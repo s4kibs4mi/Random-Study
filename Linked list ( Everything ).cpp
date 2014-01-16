@@ -4,14 +4,13 @@
 struct list {
 	int data;
 	struct list *next;
-	struct list *prev;
 };
 
 typedef struct list node;
 
 node *head;
 
-int data_count=0; // variable to count the data of list
+int data_count=0; // variable to count total data of list
 
 // Function to insert data in linked list
 void insert(int input) {
@@ -37,6 +36,24 @@ void insert(int input) {
 	getchar();
 	getchar();
 	system("clear");
+}
+
+// Function to reverse data of linked list
+void Rev() {
+   node *temp,*rev = NULL , *hold;
+   if(head==NULL || head->next==NULL) printf("\nNothing to Reverse\n");
+   else{
+	   temp = head;
+	   while(temp != NULL){
+		   hold = (node*)malloc(sizeof(node));
+		   hold->data = temp->data;
+		   hold->next = rev;
+		   rev = hold;
+		   temp = temp->next;
+	   }
+	   head = rev;
+	   printf("\nLinked List Reversed\n");
+   }
 }
 
 // Function to Delete data from linked list
@@ -99,10 +116,11 @@ bool search(int input) {
 	}
 	return false;
 }
+
 int main() {
 	int choice,input;
 	while(1) {
-		printf("\t\t\tMENU\n\n1. Insert\n2. Delete\n3. Show\n4. Reverse Show\n5. Total data\n6. Search\n7. Exit\n");
+		printf("\t\t\tMENU\n\n1. Insert\n2. Delete\n3. Show\n4. Reverse\n5. Total data\n6. Search\n7. Exit\n");
 		scanf("%d",&choice);
 		switch (choice) {
 			case 1:
@@ -119,7 +137,10 @@ int main() {
 				show();
 				break;
 			case 4:
-				//rev_show();
+				Rev();
+				getchar();
+				getchar();
+				system("clear");
 				break;
 			case 5:
 				printf("\nTotal %d data Avilabe in list.\n",data_count);
