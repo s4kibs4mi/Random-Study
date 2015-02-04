@@ -1,25 +1,19 @@
-#include <iostream>
-#include <cstdio>
-#include <cstring>
-#include <string>
-#include <vector>
-#include <map>
-
-using namespace std;
+#include <stdio.h>
 
 int main(){
-    int x;
-    int flag = 0;
-    cin >> x;
-    for(int i = 2; i <= x/2; i++){
-        if(x%i == 0){
-            flag = 1;
-            break;
+    int s,e,i;
+    scanf("%d %d",&s,&e);
+    for(;s <= e; s++){
+        int imad = 1;
+        for(i = 2; i <= s/2; i++){
+            if(s%i == 0){
+                imad = 0;
+                break;
+            }
+        }
+        if(imad == 1 && s > 1){
+            printf("%d is prime\n", s);
         }
     }
-
-    if(flag == 0)
-        cout << "Prime" << endl;
-    else cout << "Not Prime";
     return 0;
 }
